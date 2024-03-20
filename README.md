@@ -26,6 +26,12 @@ that has been modified to be useful for satellite and other RSDAS analysis.
 2) The open-notebook modal form will likely pop up, if not go to File -> Open Notebook
 3) Select GitHub and enter tony-held-carb for the user and click the magnifying glass
 4) Select the tony-held-carb/ml_rsdas and the main branch
+5) You will only be able to open one of the notebooks, you can choose the no_output of 25_epochs_output.  
+Although it is a relatively big file (20 megs), you likely want to open the file with output to
+be able to see what expected output looks like.
+6) You can run the model in Colab by selecting Runtime->Run All
+7) Unless you have a GPU enabled in your Colab session, model training may be very slow
+8) You must save a copy of the notebook to your local account (you can't directly modify the repo file clone)
 
 
 
