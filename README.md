@@ -1,7 +1,5 @@
 # Purpose: Repo to introduce key ML/AI/TensorFlow concepts to RSDAS.
-# Author Info:
-## Created by: Tony Held tony.held@arb.ca.gov
-## Created: 2024-03-01
+Created by: Tony Held (tony.held@arb.ca.gov)
 
 # Introduction:
 1) Key ML/AI concepts using TensorFlow are introduced in this repo including data pre-processing, 
