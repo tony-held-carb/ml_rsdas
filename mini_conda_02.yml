@@ -1,0 +1,116 @@
+# Purpose: requirements file to create a conda environment suitable for TensorFlow with GPU support
+# for CARB RSDAS development.  TensorFlow is very picky about packaging versions, don't change the core
+# library versions unless you are very confident about their compatability.
+
+# Key package versions:
+# Python version: 3.10.13
+# GPU packages: cudatoolkit=11.2, cudnn=8.1.0
+# TensorFlow Version: 2.10.1
+
+# Created by: Tony Held
+# Last updated: 2024-03-18
+
+# Notes:
+# 1) Make sure you are at a mini-conda shell prompt (not cmd or full anaconda prompt) for all
+#    command line interaction
+# 2) If you are having compatibility problems, try to create a new environment from scratch rather than
+#    trying to update an environment that is giving you trouble.
+# 3) Initial creation of environment
+#    a) Copy this file to a local directory.  On tony's machine it is at "C:\one_drive\code\requirements\mini_conda_02.yml"
+#    b) Search/replace text below to match your requirement's file path
+#    c) change the line starting with "name:" to the desired name of your environment
+#    d) search and replace the previous environment name to your new preferred name
+#    e) run the codeblock below at your mini-conda shell prompt:
+        # conda update conda
+        # conda env list
+        # conda remove --name mini_conda_02 --all
+        # conda deactivate
+        # conda env create -f "C:\one_drive\code\requirements\mini_conda_02.yml"
+# 4) Updating your environment
+#    a) Do not run conda or pip from the command line to update/install individual packages.
+#    b) Make sure you only update your environment by modifying this resource file and then
+#       running the update command below
+#    c) Try to install packages via conda and only use pip if there is a not a conda version available
+#    d) conda installs should always be prior to pip installs, using this file enforces this requirement
+#    e) do not change the 'name:' line for your update (if you want a new name, create a new requirements file)
+#    f) run the codeblock below
+        # conda activate mini_conda_02
+        # conda env update --file "C:\one_drive\code\requirements\mini_conda_02.yml" --prune
+# 5) Google instructions on windows and linux tensorflow installation:
+#    https://www.tensorflow.org/install/pip#windows-native
+# 6) Place your custom channels in order of preference (likely before defaults)
+# 7) You can specify the channel with the notation: - chanelname::modulename=X.Y.Z
+# 8) specify version with one equals sign for conda and two equals sign for pip
+# 9) if you are getting dependency errors consider conda clean (https://conda.io/projects/conda/en/latest/commands/clean.html)
+#      conda clean --all
+
+# change the name of your environment with the variable below when you first create the environment
+# do not change the name during environment updates
+name: mini_conda_02
+channels:
+  # Include any other channels here if your package is not in defaults
+  - defaults
+  - conda-forge
+dependencies:
+  - python=3.10.*
+  - conda-forge::cudatoolkit=11.2
+  - conda-forge::cudnn=8.1.0
+  - jupyter
+  - notebook
+  - numpy
+  - pandas
+  - scipy
+  - scikit-learn
+  - matplotlib
+  - seaborn
+  - plotly
+  - flask
+  - flask-sqlalchemy
+  - flask-login
+  - psycopg2
+
+  # geopandas related
+  - geopandas
+  - geodatasets
+  - shapely
+  - fiona
+  - pyproj
+  - packaging
+  - pyogrio
+  - rtree
+  - psycopg2
+  - geopy
+  - pointpats
+  - mapclassify
+  - folium
+  - pysal
+  - contextily
+  - GeoAlchemy2
+
+# read an HTML table from a website into a pandas data frame
+  - lxml
+  - html5lib
+  - BeautifulSoup4
+
+# allows for excel files to be directly read
+  - xlrd
+
+  # Make sure you include pip as a dependency (so don't delete the next line)
+  # if you don't have the next line, you can get unstable/unpredictable results
+  - pip
+  # If a package is not available through conda, include it in the pip sub-list below
+  # The indentation is important, make sure pip packages are tabbed in one from - pip:
+  - pip:
+    - wget
+    - Flask-Migrate
+    # TF must be lower than 2.11 on a native windows install
+    # TF would not install properly if you try to do it through conda on my carb laptop
+    # I'm installing these tf packages via pip as a backup to conda (may want to use conda on linux)
+    - tensorflow<2.11
+    - tensorflow-datasets
+    - tensorflow_hub
+    # for object detection
+    - opencv-python
+    # not sure if i need this below because i have it in conda above
+    # - geoalchemy2 
+    - Pillow
