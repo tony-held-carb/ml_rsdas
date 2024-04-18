@@ -2222,9 +2222,14 @@ def find_file_structure(run_mode):
   if run_mode == 'colab':
     paths['dir_project'] = "/content/ml_rsdas/"
     paths['dir_local'] = "/content/local/"
-  else:  # pycharm
+  elif run_mode == 'pycharm':
     paths['dir_project'] = "C:/one_drive/code/pycharm/ml_rsdas/"
     paths['dir_local'] = "C:/local/ml_local/"
+  elif run_mode == 'carb_hpc':
+    paths['dir_project'] = "/data/arb/tmpRuntime/projects/rsdas_ml/ml_rsdas/"
+    paths['dir_local'] = "/data/arb/tmpRuntime/projects/rsdas_ml/ml_local/"
+  else:
+    print(f"Unknown run mode: {run_mode}")
 
   ######################################################################
   # Project Directory Files
@@ -2280,6 +2285,6 @@ def diagnostics(paths):
 # If you want to mount your google drive, use mount_google_drive
 # hard-coding run_mode here for expediency
 # run_mode = mount_google_drive()
-run_mode = 'colab'
+run_mode = 'carb_hpc'
 paths = find_file_structure(run_mode)
 diagnostics(paths)
